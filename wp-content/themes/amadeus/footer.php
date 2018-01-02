@@ -19,6 +19,7 @@
 			<a href="#" class="scrolltop"><i class="fa fa-chevron-up"></i></a>
 		</div>
 		<div class="site-info container">
+Copyright © <?php echo date('Y');?> <a href="https://songyichao.com/">宋祎超</a>.
 			<?php do_action( 'amadeus_footer' ); ?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
