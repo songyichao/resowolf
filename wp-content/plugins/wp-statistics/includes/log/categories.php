@@ -17,11 +17,13 @@
 	} else {
 		$rangestart = '';
 	}
+
 	if ( array_key_exists('rangeend', $_GET) ) {
 		$rangeend = $_GET['rangeend'];
 	} else {
 		$rangeend = '';
 	}
+
 	if ( array_key_exists('cat', $_GET) ) {
 		$category = intval($_GET['cat']);
 	} else {
@@ -75,7 +77,7 @@
 	}
 
 	for ( $i = $daysToDisplay; $i >= 0; $i-- ) {
-		$date[] = "'" . $WP_Statistics->Real_Current_Date('M j', '-' . ( $i + $daysInThePast ), $rangeend_utime) . "'";
+		$date[] = "'" . $WP_Statistics->Real_Current_Date( 'M j', '-' . $i, $rangeend_utime ) . "'";
 
 		$stat = 0;
 		foreach ( $posts as $post ) {

@@ -15,6 +15,10 @@ class WP_Statistics_Frontend {
 		// Add the honey trap code in the footer.
 		add_action('wp_footer', 'WP_Statistics_Frontend::add_honeypot');
 
+		if ( $WP_Statistics->get_option('menu_bar') ) {
+			add_action('wp_enqueue_scripts', 'WP_Statistics_Frontend::enqueue_scripts');
+		}
+		
 		// We can wait until the very end of the page to process the statistics,
 		// that way the page loads and displays quickly.
 		add_action('wp', 'WP_Statistics_Frontend::init');
@@ -32,10 +36,24 @@ class WP_Statistics_Frontend {
 	}
 
 	/**
+	 * Enqueue Scripts
+	 *
+	 * @param string $hook Not Used
+	 */
+	static function enqueue_scripts( $hook ) {
+		// Load our CSS to be used.
+		wp_enqueue_style(
+				'wpstatistics-css',
+				WP_Statistics::$reg['plugin-url'] . 'assets/css/frontend.css',
+				true,
+				WP_Statistics::$reg['version']
+		);
+	}
+
+	/**
 	 * Shutdown Action
 	 */
 	static function init() {
-
 		global $WP_Statistics;
 
 		// If something has gone horribly wrong and $WP_Statistics isn't an object, bail out.
@@ -103,6 +121,41 @@ class WP_Statistics_Frontend {
 					"Installation/upgrade complete!",
 					$headers
 			);
+		}
+
+		// Check to show hits in posts/pages
+		if ( $WP_Statistics->get_option('show_hits') ) {
+			add_filter( 'the_content', 'WP_Statistics_Frontend::show_hits' );
+		}
+	}
+
+	/**
+	 * @param $content
+	 *
+	 * @return string
+	 */
+	public static function show_hits($content) {
+		global $WP_Statistics;
+
+		// Get post ID
+		$post_id = get_the_ID();
+
+		// Check post ID
+		if(!$post_id) {
+			return $content;
+		}
+
+		// Get post hits
+		$hits = wp_statistics_pages('total', "", $post_id);
+		$hits_html = sprintf(__('<p>Views: %s</p>', 'wp-statistics'), $hits);
+
+		// Check hits position
+		if ( $WP_Statistics->get_option('display_hits_position') == 'before_content' ) {
+			return $hits_html . $content;
+		} elseif ( $WP_Statistics->get_option('display_hits_position') == 'after_content' ) {
+			return $content . $hits_html;
+		} else {
+			return $content;
 		}
 	}
 
