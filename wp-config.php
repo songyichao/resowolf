@@ -21,7 +21,8 @@
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 //define('WP_CACHE', true); //Added by WP-Cache Manager
-define( 'WPCACHEHOME', '/search/service/nginx/html/songyichao/songyichao/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+define('WP_USE_EXT_MYSQL', False);
+define( 'WPCACHEHOME', '/search/service/nginx/html/resowolf/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 define('DB_NAME', 'wordpress');
 
 /** MySQL database username */
