@@ -235,9 +235,15 @@ function amadeus_register_required_plugins() {
 	$plugins = array(
 
 		array(
-			'name'      => 'Nivo Slider Lite',
-			'slug'      => 'nivo-slider-lite',
-			'required'  => false,
+			'name'     => 'Orbit Fox',
+			'slug'     => 'themeisle-companion',
+			'required' => false,
+		),
+
+		array(
+			'name'     => 'Nivo Slider Lite',
+			'slug'     => 'nivo-slider-lite',
+			'required' => false,
 		),
 
 		array(
@@ -348,9 +354,9 @@ function amadeus_post_class( $classes ) {
 	global $post;
 
 	$amadeus_index_feat_image = get_theme_mod( 'index_feat_image' );
-	$amadeus_post_feat_image = get_theme_mod( 'post_feat_image' );
+	$amadeus_post_feat_image  = get_theme_mod( 'post_feat_image' );
 
-	if ( ( is_single() && ! empty( $amadeus_post_feat_image ) && ($amadeus_post_feat_image == 1) ) || ( is_home() && ! empty( $amadeus_index_feat_image ) && ($amadeus_index_feat_image == 1) ) ) {
+	if ( ( is_single() && ! empty( $amadeus_post_feat_image ) && ( $amadeus_post_feat_image == 1 ) ) || ( is_home() && ! empty( $amadeus_index_feat_image ) && ( $amadeus_index_feat_image == 1 ) ) ) {
 		$classes[] = 'amadeus-image-hidden';
 	}
 

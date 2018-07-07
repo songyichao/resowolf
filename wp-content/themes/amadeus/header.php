@@ -30,10 +30,10 @@
 				wp_nav_menu(
 					array(
 						'theme_location' => 'social',
-						'link_before' => '<span class="screen-reader-text">',
-						'link_after' => '</span>',
-						'menu_class' => 'menu clearfix',
-						'fallback_cb' => false,
+						'link_before'    => '<span class="screen-reader-text">',
+						'link_after'     => '</span>',
+						'menu_class'     => 'menu clearfix',
+						'fallback_cb'    => false,
 					)
 				);
 				?>
@@ -48,7 +48,7 @@
 			wp_nav_menu(
 				array(
 					'theme_location' => 'primary',
-					'menu_id' => 'primary-menu',
+					'menu_id'        => 'primary-menu',
 				)
 			);
 			?>
@@ -93,7 +93,7 @@
 			wp_nav_menu(
 				array(
 					'theme_location' => 'primary',
-					'menu_id' => 'primary-menu',
+					'menu_id'        => 'primary-menu',
 				)
 			);
 			?>
@@ -105,5 +105,5 @@
 	</header><!-- #masthead -->
 
 	<?php amadeus_banner(); ?>
-	
+
 	<div id="content" class="site-content container">

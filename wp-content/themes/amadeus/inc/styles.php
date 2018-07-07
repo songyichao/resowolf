@@ -14,17 +14,17 @@ function amadeus_custom_styles() {
 
 	// Header padding
 	$branding_padding = get_theme_mod( 'branding_padding', '75' );
-	$custom .= '.site-branding { padding:' . intval( $branding_padding ) . 'px 0; }' . "\n";
+	$custom          .= '.site-branding { padding:' . intval( $branding_padding ) . 'px 0; }' . "\n";
 
 	// Header image
-	$header_img_height = get_theme_mod( 'header_img_height', '300' );
-	$custom .= '.header-image { height:' . intval( $header_img_height ) . 'px; }' . "\n";
+	$header_img_height      = get_theme_mod( 'header_img_height', '300' );
+	$custom                .= '.header-image { height:' . intval( $header_img_height ) . 'px; }' . "\n";
 	$header_img_height_1024 = get_theme_mod( 'header_img_height_1024', '300' );
-	$custom .= '@media only screen and (max-width: 1024px) { .header-image { height:' . intval( $header_img_height_1024 ) . 'px; } }' . "\n";
+	$custom                .= '@media only screen and (max-width: 1024px) { .header-image { height:' . intval( $header_img_height_1024 ) . 'px; } }' . "\n";
 	// Logo size
 	$logo_size = get_theme_mod( 'logo_size', '200' );
-	$custom .= '.site-logo { max-width:' . intval( $logo_size ) . 'px; }' . "\n";
-	$custom .= '.custom-logo { max-width:' . intval( $logo_size ) . 'px; }' . "\n";
+	$custom   .= '.site-logo { max-width:' . intval( $logo_size ) . 'px; }' . "\n";
+	$custom   .= '.custom-logo { max-width:' . intval( $logo_size ) . 'px; }' . "\n";
 
 	// Hide sidebar
 	$hide_sidebar_index = get_theme_mod( 'hide_sidebar_index' );
@@ -44,41 +44,41 @@ function amadeus_custom_styles() {
 	}
 	// Body
 	$body_text = get_theme_mod( 'body_text_color', '#4c4c4c' );
-	$custom .= 'body, .widget a { color:' . esc_attr( $body_text ) . '}' . "\n";
+	$custom   .= 'body, .widget a { color:' . esc_attr( $body_text ) . '}' . "\n";
 	// Social bg
 	$social_bg = get_theme_mod( 'social_bg', '#fff' );
-	$custom .= '.social-navigation { background-color:' . esc_attr( $social_bg ) . '}' . "\n";
+	$custom   .= '.social-navigation { background-color:' . esc_attr( $social_bg ) . '}' . "\n";
 	// Social color
 	$social_color = get_theme_mod( 'social_color', '#1c1c1c' );
-	$custom .= '.social-navigation li a::before { background-color:' . esc_attr( $social_color ) . '}' . "\n";
+	$custom      .= '.social-navigation li a::before { background-color:' . esc_attr( $social_color ) . '}' . "\n";
 	// Branding wrapper
 	$branding_bg = get_theme_mod( 'branding_bg', '#fff' );
-	$custom .= '.branding-wrapper { background-color:' . esc_attr( $branding_bg ) . '}' . "\n";
+	$custom     .= '.branding-wrapper { background-color:' . esc_attr( $branding_bg ) . '}' . "\n";
 	// Menu
 	$menu_bg = get_theme_mod( 'menu_bg', '#fff' );
 	$custom .= '.main-navigation { background-color:' . esc_attr( $menu_bg ) . '}' . "\n";
 	// Menu items
 	$menu_color = get_theme_mod( 'menu_color', '#1c1c1c' );
-	$custom .= '.main-navigation a { color:' . esc_attr( $menu_color ) . ' !important;}' . "\n";
+	$custom    .= '.main-navigation a { color:' . esc_attr( $menu_color ) . ' !important;}' . "\n";
 
 	// Site title
 	$site_title = get_theme_mod( 'site_title_color', '#1c1c1c' );
-	$custom .= '.site-title a, .site-title a:hover { color:' . esc_attr( $site_title ) . ' !important;}' . "\n";
+	$custom    .= '.site-title a, .site-title a:hover { color:' . esc_attr( $site_title ) . ' !important;}' . "\n";
 	// Site desc
 	$site_desc = get_theme_mod( 'site_desc_color', '#767676' );
-	$custom .= '.site-description { color:' . esc_attr( $site_desc ) . '}' . "\n";
+	$custom   .= '.site-description { color:' . esc_attr( $site_desc ) . '}' . "\n";
 	// Entry titles
 	$entry_titles = get_theme_mod( 'entry_titles', '#1c1c1c' );
-	$custom .= '.entry-title, .entry-title a { color:' . esc_attr( $entry_titles ) . ' !important;}' . "\n";
+	$custom      .= '.entry-title, .entry-title a { color:' . esc_attr( $entry_titles ) . ' !important;}' . "\n";
 	// Entry meta
 	$entry_meta = get_theme_mod( 'entry_meta', '#9d9d9d' );
-	$custom .= '.entry-meta, .entry-meta a, .entry-footer, .entry-footer a { color:' . esc_attr( $entry_meta ) . ' !important;}' . "\n";
+	$custom    .= '.entry-meta, .entry-meta a, .entry-footer, .entry-footer a { color:' . esc_attr( $entry_meta ) . ' !important;}' . "\n";
 	// Footer
 	$footer_bg = get_theme_mod( 'footer_bg', '#fff' );
-	$custom .= '.site-footer, .footer-widget-area { background-color:' . esc_attr( $footer_bg ) . '}' . "\n";
+	$custom   .= '.site-footer, .footer-widget-area { background-color:' . esc_attr( $footer_bg ) . '}' . "\n";
 
 	// Fonts
-	$body_fonts = get_theme_mod( 'body_font_family' );
+	$body_fonts     = get_theme_mod( 'body_font_family' );
 	$headings_fonts = get_theme_mod( 'headings_font_family' );
 	if ( $body_fonts != '' ) {
 		$custom .= 'body { font-family:' . $body_fonts . ';}' . "\n";

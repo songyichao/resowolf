@@ -1,5 +1,5 @@
 /*
-Version: 2.3.2
+Version: 2.4.3
  */
 .pirate_forms_wrap .form_field_wrap,
 .widget .pirate_forms_wrap .form_field_wrap {
@@ -39,18 +39,22 @@ Version: 2.3.2
 	text-align: right;
 }
 
+.pirate-forms-maps-custom {
+	min-width: 150px;
+}
+
+.pirate-forms-maps-custom input {
+	display: inline;
+	width: auto;
+}
+
 .pirate-forms-maps-custom label {
-	display: inline-block;
+	display: inline;
 	cursor: pointer;
 }
 
 .pirate-forms-maps-custom span {
 	margin-left: 5px;
-}
-
-.pirate-forms-fields-container {
-	margin-right: -15px;
-	margin-left: -15px;
 }
 
 .pirate-forms-fields-container .form_field_wrap {
@@ -66,7 +70,8 @@ Version: 2.3.2
 	margin: 0;
 }
 
-.pirate-forms-fields-container .form_field_wrap textarea {
+.pirate-forms-fields-container .form_field_wrap textarea,
+.pirate-forms-fields-container .form_field_wrap select {
 	width: 100%;
 	max-width: 100%;
 	margin: 0;
@@ -75,11 +80,51 @@ Version: 2.3.2
 .pirate_forms_wrap .form_field_wrap .pirate-forms-submit-button {
 	display: inline-block;
 	width: auto;
-	max-width: 100%;
+}
+
+.pirate_forms_wrap .pirate-forms-footer {
+	display: table;
+	float: left;
+	width: 100%;
+}
+
+.pirate_forms_wrap .pirate-forms-footer .form_field_wrap {
+	width: auto;
+	display: table-cell;
+	float: none;
+	margin: 0;
+	vertical-align: middle;
+	padding-bottom: 10px;
+}
+
+.pirate_forms_wrap .pirate_forms_three_inputs_wrap input[type=checkbox] {
+	display: inline-block;
+	width: auto;
+	height: inherit;
+}
+
+.pf-checkbox-label {
+	display: inline;
+	cursor: pointer;
+}
+
+.pf-checkbox-label span {
+	margin-left: 5px;
+}
+
+.pirate_forms .contact_checkbox_wrap #pirate-forms-contact-checkbox, .pirate_forms .contact_checkbox_wrap p {
+	display: inline-block;
 }
 
 @media (max-width: 480px) {
+	.pirate_forms_wrap .pirate-forms-footer .form_field_wrap,
 	.pirate_forms_wrap .form_field_wrap .pirate-forms-submit-button {
+		display: block;
 		width: 100%;
+	}
+
+	.pirate_forms_wrap .pirate-forms-footer .pirateform_wrap_classes_spam_wrap,
+	.pirate_forms_wrap .pirate-forms-footer .form_captcha_wrap {
+		margin-bottom: 20px;
 	}
 }

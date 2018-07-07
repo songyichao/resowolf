@@ -1,4 +1,48 @@
 
+ ### v2.4.3 - 2018-06-25 
+ **Changes:** 
+ * New Gutenberg block for the default Pirate Forms form
+* Made the checkbox field to store in the database for GDPR compliance
+* New option to disable tracking of the IP for GDPR compliance
+* Replaced subscription form with Sendinblue form
+ 
+ ### v2.4.2 - 2018-06-07 
+ **Changes:** 
+ * NEW support for submitting Ajax forms with [pirate_forms ajax="yes"]
+* Added compatibility with WordPress 4.9.6 Export and Erase Personal Data options
+* Fixed issue with form caused by the reCaptcha
+* Fixed compatibility issues with the wpDataTables Lite plugin
+ 
+ ### v2.4.1 - 2018-05-07 
+ **Changes:** 
+ * GDPR compliance
+ 
+ ### v2.4.0 - 2018-04-02 
+ **Changes:** 
+ * Improves compatibility with various themes.
+* Adds support for two new custom fields.
+* Adds filter for custom classes into form fields.
+* Adds visual/text switch to form wyiwyg editor.
+ 
+ ### v2.3.5 - 2018-03-05 
+ **Changes:** 
+ * Fix characters encoding issue in the subject field.
+* Fix issue with spam label with two forms on the page.
+* Allows zip files to be attached in forms.
+* Adds a filter to dynamically change the subject.
+* Adds options to send a copy of the email to the sender.
+ 
+ ### v2.3.4 - 2018-02-15 
+ **Changes:** 
+ * Added missing Loader.gif file
+* Fixed undefined notice
+* Fix submit button leaving form when ReCaptcha is enabled
+ 
+ ### v2.3.3 - 2018-01-06 
+ **Changes:** 
+ * Fix double reCAPTCHA box bug.
+* Fix custom spam trap alignement error.
+ 
  ### v2.3.2 - 2017-12-28 
  **Changes:** 
  * Fix for tooltip admin behavior.

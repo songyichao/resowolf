@@ -20,7 +20,6 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 
-	
 	<?php if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
@@ -61,8 +60,8 @@ if ( post_password_required() ) {
 			<?php
 				wp_list_comments(
 					array(
-						'style'      => 'ol',
-						'short_ping' => true,
+						'style'       => 'ol',
+						'short_ping'  => true,
 						'avatar_size' => 60,
 					)
 				);
@@ -92,7 +91,7 @@ if ( post_password_required() ) {
 
 	<?php
 		$args = array(
-			'comment_notes_after'  => '',
+			'comment_notes_after' => '',
 		);
 		comment_form( $args );
 	?>

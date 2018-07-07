@@ -14,7 +14,7 @@ function amadeus_banner() {
 		return;
 	}
 
-	if ( (get_theme_mod( 'banner_type', 'image' ) == 'image') && get_header_image() ) {
+	if ( ( get_theme_mod( 'banner_type', 'image' ) == 'image' ) && get_header_image() ) {
 		echo '<div class="header-image">';
 		if ( ! get_theme_mod( 'hide_scroll' ) ) {
 			echo '<div class="header-scroll">';

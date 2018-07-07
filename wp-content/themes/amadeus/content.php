@@ -28,12 +28,12 @@
 		</header><!-- .entry-header -->
 
 		<div class="entry-content">
-			<?php if ( (get_theme_mod( 'full_content' ) == 1) ) : ?>
+			<?php if ( ( get_theme_mod( 'full_content' ) == 1 ) ) : ?>
 				<?php
 				the_content(
 					sprintf(
 						/* translators: Title of the post */
-						 __( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'amadeus' ),
+						__( 'Continue reading %s <span class="meta-nav">&rarr;</span>', 'amadeus' ),
 						the_title( '<span class="screen-reader-text">"', '"</span>', false )
 					)
 				);

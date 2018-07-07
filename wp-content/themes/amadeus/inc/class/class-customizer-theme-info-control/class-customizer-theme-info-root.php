@@ -80,8 +80,8 @@ final class Amadeus_Customizer_Upsell {
 			new Amadeus_Customizer_Theme_Info_Main(
 				$manager, 'amadeus-theme-info', array(
 					'theme_info_title' => __( 'Amadeus', 'amadeus' ),
-					'label_url'    => esc_url( 'http://docs.themeisle.com/article/270-amadeus-documentation' ),
-					'label_text'   => __( 'Documentation', 'amadeus' ),
+					'label_url'        => esc_url( 'http://docs.themeisle.com/article/270-amadeus-documentation' ),
+					'label_text'       => __( 'Documentation', 'amadeus' ),
 				)
 			)
 		);

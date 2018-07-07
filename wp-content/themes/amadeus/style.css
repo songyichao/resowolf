@@ -4,7 +4,7 @@ Theme URI: http://themeisle.com/themes/amadeus
 Author: Themeisle
 Author URI: http://themeisle.com
 Description: Amadeus is a responsive blog theme that features a modern and clean design. Features include: a parallax header image, Metaslider integration, ability to use Google Fonts, social icons, full color control, custom widgets and much more.
-Version: 2.0.6
+Version: 2.0.7
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: amadeus
@@ -41,7 +41,11 @@ a,
 a:hover {
 	color: #618eba;
 }
-.bypostauthor {}
+
+.bypostauthor {
+	display: block;
+}
+
 
 /*--------------------------------------------------------------
 Tables

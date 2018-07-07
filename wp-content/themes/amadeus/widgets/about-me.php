@@ -15,11 +15,11 @@ class Amadeus_About extends WP_Widget {
 	 */
 	public function __construct() {
 		$widget_ops  = array(
-			'classname' => 'amadeus_about',
+			'classname'   => 'amadeus_about',
 			'description' => __( 'About me widget.', 'amadeus' ),
 		);
 		$control_ops = array(
-			'width' => 400,
+			'width'  => 400,
 			'height' => 350,
 		);
 		parent::__construct( 'amadeus_about', __( 'Amadeus: About me', 'amadeus' ), $widget_ops, $control_ops );
@@ -91,8 +91,8 @@ class Amadeus_About extends WP_Widget {
 	public function form( $instance ) {
 		$instance  = wp_parse_args(
 			(array) $instance, array(
-				'title' => '',
-				'text' => '',
+				'title'     => '',
+				'text'      => '',
 				'image_url' => '',
 			)
 		);

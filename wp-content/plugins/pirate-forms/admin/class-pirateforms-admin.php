@@ -61,25 +61,28 @@ class PirateForms_Admin {
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles_and_scripts() {
-		global $pagenow;
+		$current_screen = get_current_screen();
 
-		if ( ! empty( $pagenow ) && ( $pagenow == 'options-general.php' || $pagenow == 'admin.php' )
-			 && isset( $_GET['page'] ) && $_GET['page'] == 'pirateforms-admin'
-		) {
+		if ( ! isset( $current_screen->id ) ) {
+			return;
+		}
+
+		if ( in_array( $current_screen->id, array( 'edit-pf_contact', 'edit-pf_form', 'pf_form', 'toplevel_page_pirateforms-admin' ) ) ) {
 			wp_enqueue_style( 'pirateforms_admin_styles', PIRATEFORMS_URL . 'admin/css/wp-admin.css', array(), $this->version );
 			wp_enqueue_script( 'pirateforms_scripts_admin', PIRATEFORMS_URL . 'admin/js/scripts-admin.js', array( 'jquery', 'jquery-ui-tooltip' ), $this->version );
 			wp_localize_script(
 				'pirateforms_scripts_admin', 'cwp_top_ajaxload', array(
 					'ajaxurl' => admin_url( 'admin-ajax.php' ),
 					'nonce'   => wp_create_nonce( PIRATEFORMS_SLUG ),
+					'slug'    => PIRATEFORMS_SLUG,
 					'i10n'    => array(
 						'recaptcha' => __( 'Please specify the Site Key and Secret Key.', 'pirate-forms' ),
 					),
 				)
 			);
 		}
-		if ( isset( $_GET['page'] ) && $_GET['page'] == 'pf_more_features' ) {
 
+		if ( isset( $_GET['page'] ) && $_GET['page'] == 'pf_more_features' ) {
 			wp_enqueue_style( 'pirateforms_upsell_styles', PIRATEFORMS_URL . 'admin/css/upsell.css', array(), $this->version );
 		}
 	}
@@ -303,23 +306,44 @@ class PirateForms_Admin {
 									'value' => __( 'Store submissions in the database', 'pirate-forms' ),
 									'html'  => '<span class="dashicons dashicons-editor-help"></span>',
 									'desc'  => array(
-										'value' => __( 'Should the submissions be stored in the admin area? If chosen, contact form submissions will be saved under "All Entries" on the left (appears after this option is activated).', 'pirate-forms' ),
+										'value' => sprintf( '%s<br>%s', __( 'Should the submissions be stored in the admin area? If chosen, contact form submissions will be saved under "All Entries" on the left (appears after this option is activated).', 'pirate-forms' ), __( 'According to GDPR we recommend you to ask for consent in order to store user data', 'pirate-forms' ) ),
 										'class' => 'pirate_forms_option_description',
 									),
 								),
-								'default' => 'yes',
+								'default' => 'no',
 								'value'   => PirateForms_Util::get_option( 'pirateformsopt_store' ),
 								'wrap'    => array(
 									'type'  => 'div',
 									'class' => 'pirate-forms-grouped',
 								),
 								'options' => array( 'yes' => __( 'Yes', 'pirate-forms' ) ),
+								'title' => __( 'According to GDPR, we recommend you to ask for consent in order to store user data.', 'pirate-forms' ),
+							),
+							array(
+								'id'      => 'pirateformsopt_store_ip',
+								'type'    => 'checkbox',
+								'label'   => array(
+									'value' => __( 'Track and store IP of user', 'pirate-forms' ),
+									'html'  => '<span class="dashicons dashicons-editor-help"></span>',
+									'desc'  => array(
+										'value' => sprintf( '%s<br>%s<br>%s', __( 'Should the IP of the customer be tracked, stored and displayed in the email content?', 'pirate-forms' ), __( 'According to GDPR we recommend you to ask for consent in order to store user data', 'pirate-forms' ), __( 'If this option is not selected, we may not be able to determine whether this is a spam message.', 'pirate-forms' ) ),
+										'class' => 'pirate_forms_option_description',
+									),
+								),
+								'default' => 'no',
+								'value'   => PirateForms_Util::get_option( 'pirateformsopt_store_ip' ),
+								'wrap'    => array(
+									'type'  => 'div',
+									'class' => 'pirate-forms-grouped',
+								),
+								'options' => array( 'yes' => __( 'Yes', 'pirate-forms' ) ),
+								'title' => __( 'According to GDPR, we recommend you to ask for consent in order to store user data.', 'pirate-forms' ),
 							),
 							array(
 								'id'      => 'pirateformsopt_nonce',
 								'type'    => 'checkbox',
 								'label'   => array(
-									'value' => __( 'Add a nonce to the contact form:', 'pirate-forms' ),
+									'value' => __( 'Add a nonce to the contact form', 'pirate-forms' ),
 									'html'  => '<span class="dashicons dashicons-editor-help"></span>',
 									'desc'  => array(
 										'value' => __( 'Should the form use a WordPress nonce? This helps reduce spam by ensuring that the form submittor is on the site when submitting the form rather than submitting remotely. This could, however, cause problems with sites using a page caching plugin. Turn this off if you are getting complaints about forms not being able to be submitted with an error of "Nonce failed!"', 'pirate-forms' ),
@@ -352,6 +376,25 @@ class PirateForms_Admin {
 								),
 								'cols'  => 70,
 								'rows'  => 5,
+							),
+							array(
+								'id'      => 'pirateformsopt_copy_email',
+								'type'    => 'checkbox',
+								'label'   => array(
+									'value' => __( 'Add copy of mail to confirmation email', 'pirate-forms' ),
+									'html'  => '<span class="dashicons dashicons-editor-help"></span>',
+									'desc'  => array(
+										'value' => __( 'Should a copy of the email be appended to the confirmation email? Only the fields that are being displayed will be sent to the sender. Please note that this will only be appended if confirmation email text is provided above.', 'pirate-forms' ),
+										'class' => 'pirate_forms_option_description',
+									),
+								),
+								'default' => '',
+								'value'   => PirateForms_Util::get_option( 'pirateformsopt_copy_email' ),
+								'wrap'    => array(
+									'type'  => 'div',
+									'class' => 'pirate-forms-grouped',
+								),
+								'options' => array( 'yes' => __( 'Yes', 'pirate-forms' ) ),
 							),
 							array(
 								'id'      => 'pirateformsopt_thank_you_url',
@@ -493,6 +536,23 @@ class PirateForms_Admin {
 									'req' => __( 'Required', 'pirate-forms' ),
 								),
 							),
+							array(
+								'id'      => 'pirateformsopt_checkbox_field',
+								'type'    => 'select',
+								'label'   => array(
+									'value' => __( 'Checkbox', 'pirate-forms' ),
+								),
+								'value'   => PirateForms_Util::get_option( 'pirateformsopt_checkbox_field' ),
+								'wrap'    => array(
+									'type'  => 'div',
+									'class' => 'pirate-forms-grouped pirateformsopt_checkbox',
+								),
+								'options' => array(
+									''    => __( 'Do not display', 'pirate-forms' ),
+									'yes' => __( 'Display but not required', 'pirate-forms' ),
+									'req' => __( 'Required', 'pirate-forms' ),
+								),
+							),
 							/* Recaptcha */
 							array(
 								'id'      => 'pirateformsopt_recaptcha_field',
@@ -616,11 +676,29 @@ class PirateForms_Admin {
 								),
 							),
 							array(
+								'id'      => 'pirateformsopt_label_checkbox',
+								'type'    => 'wysiwyg',
+								'label'   => array(
+									'value' => __( 'Checkbox', 'pirate-forms' ),
+								),
+								'value'   => PirateForms_Util::get_option( 'pirateformsopt_label_checkbox' ),
+								'wrap'    => array(
+									'type'  => 'div',
+									'class' => 'pirate-forms-grouped',
+								),
+								'wysiwyg' => array(
+									'editor_class'  => 'pirate-forms-wysiwyg',
+									'quicktags' => false,
+									'teeny' => true,
+									'media_buttons' => false,
+								),
+							),
+							array(
 								'id'      => 'pirateformsopt_email_content',
 								'type'    => 'wysiwyg',
 								'label'   => array(
 									'value' => __( 'Email content', 'pirate-forms' ),
-									'html'  => '<br/><br/>' . esc_attr( __( 'You can use the next magic tags:', 'pirate-forms' ) ) . '<br/>' . PirateForms_Util::get_magic_tags(),
+									'html'  => '<br/><br/>' . esc_attr( __( 'You can use the following magic tags:', 'pirate-forms' ) ) . '<br/>' . PirateForms_Util::get_magic_tags(),
 								),
 								'default' => PirateForms_Util::get_default_email_content( true, null, true ),
 								'value'   => PirateForms_Util::get_option( 'pirateformsopt_email_content' ),
@@ -629,7 +707,6 @@ class PirateForms_Admin {
 									'class' => 'pirate-forms-grouped',
 								),
 								'wysiwyg' => array(
-									'quicktags'     => false,
 									'editor_class'  => 'pirate-forms-wysiwyg',
 									'editor_height' => 500,
 								),
@@ -701,6 +778,19 @@ class PirateForms_Admin {
 								),
 								'default' => __( 'Please add an attachment', 'pirate-forms' ),
 								'value'   => PirateForms_Util::get_option( 'pirateformsopt_label_err_no_attachment' ),
+								'wrap'    => array(
+									'type'  => 'div',
+									'class' => 'pirate-forms-grouped',
+								),
+							),
+							array(
+								'id'      => 'pirateformsopt_label_err_no_checkbox',
+								'type'    => 'text',
+								'label'   => array(
+									'value' => __( 'Checkbox is not checked', 'pirate-forms' ),
+								),
+								'default' => __( 'Please select the checkbox', 'pirate-forms' ),
+								'value'   => PirateForms_Util::get_option( 'pirateformsopt_label_err_no_checkbox' ),
 								'wrap'    => array(
 									'type'  => 'div',
 									'class' => 'pirate-forms-grouped',
@@ -1013,6 +1103,48 @@ class PirateForms_Admin {
 	}
 
 	/**
+	 * Show admin notices.
+	 */
+	public function admin_notices() {
+		$screen = get_current_screen();
+		if ( empty( $screen ) ) {
+			return;
+		}
+		if ( ! isset( $screen->base ) ) {
+			return;
+		}
+
+		if ( ! in_array( $screen->id, array( 'toplevel_page_pirateforms-admin' ) ) ) {
+			return;
+		}
+
+		$options = PirateForms_Util::get_option();
+
+		// check if store submissions is enabled without having a checkbox.
+		if ( 'yes' !== $options['pirateformsopt_store'] ) {
+			return;
+		}
+
+		if ( empty( $options['pirateformsopt_checkbox_field'] ) && false === ( $x = get_transient( 'pirate_forms_gdpr_notice0' ) ) ) {
+			echo sprintf( '<div data-dismissible="0" class="notice notice-warning pirateforms-notice pirateforms-notice-checkbox pirateforms-notice-gdpr is-dismissible"><p><strong>%s</strong></p></div>', __( 'According to GDPR we recommend you to ask for consent in order to store user data', 'pirate-forms' ) );
+		}
+	}
+
+	/**
+	 * Generic ajax handler.
+	 */
+	public function ajax() {
+		check_ajax_referer( PIRATEFORMS_SLUG, 'security' );
+
+		switch ( $_POST['_action'] ) {
+			case 'dismiss-notice':
+				set_transient( 'pirate_forms_gdpr_notice' . $_POST['id'], 'yes' );
+				break;
+		}
+		wp_die();
+	}
+
+	/**
 	 * Hook into the sent result.
 	 */
 	public function test_result( $response ) {
@@ -1026,5 +1158,113 @@ class PirateForms_Admin {
 		$_SESSION[ $error_key ] = '';
 
 		return $body;
+	}
+
+	/**
+	 * Register the private data exporter.
+	 */
+	public function register_private_data_exporter( $exporters ) {
+		$exporters[ PIRATEFORMS_SLUG ] = array(
+			'exporter_friendly_name' => PIRATEFORMS_NAME,
+			'callback' => array( $this, 'private_data_exporter' ),
+		);
+		return $exporters;
+	}
+
+	/**
+	 * Export the private data.
+	 */
+	public function private_data_exporter( $email_address, $page = 1 ) {
+		$export_items = array();
+		$query  = new WP_Query(
+			array(
+				'post_type'     => 'pf_contact',
+				'numberposts'   => 300,
+				'post_status'   => array( 'publish', 'private' ),
+				'meta_query'    => array(
+					array(
+						'key'   => 'Contact email',
+						'value' => $email_address,
+					),
+				),
+			)
+		);
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+
+				$data       = array(
+					array(
+						'name'  => __( 'Email content', 'pirate-forms' ),
+						'value' => nl2br( strip_tags( $query->post->post_content ) ),
+					),
+				);
+
+				$export_items[] = array(
+					'group_id' => 'pf_contact',
+					'group_label' => PIRATEFORMS_NAME,
+					'item_id' => "pf_contact-{$query->post->ID}",
+					'data' => $data,
+				);
+			}
+		}
+
+		return array(
+			'data'  => $export_items,
+			'done'  => true,
+		);
+	}
+
+	/**
+	 * Register the private data eraser.
+	 */
+	public function register_private_data_eraser( $erasers ) {
+		$erasers[ PIRATEFORMS_SLUG ] = array(
+			'eraser_friendly_name' => PIRATEFORMS_NAME,
+			'callback' => array( $this, 'private_data_eraser' ),
+		);
+		return $erasers;
+	}
+
+	/**
+	 * Erase the private data.
+	 */
+	public function private_data_eraser( $email_address, $page = 1 ) {
+		$query  = new WP_Query(
+			array(
+				'post_type'     => 'pf_contact',
+				'numberposts'   => 300,
+				'post_status'   => array( 'publish', 'private' ),
+				'fields'        => 'ids',
+				'meta_query'    => array(
+					array(
+						'key'   => 'Contact email',
+						'value' => $email_address,
+					),
+				),
+			)
+		);
+
+		$retained   = array();
+		$removed    = 0;
+
+		if ( $query->have_posts() ) {
+			while ( $query->have_posts() ) {
+				$query->the_post();
+				if ( false !== ( $post_id = wp_delete_post( $query->post, true ) ) ) {
+					$removed++;
+				} else {
+					$retained[] = $query->post;
+				}
+			}
+		}
+
+		return array(
+			'items_removed' => $removed,
+			'items_retained' => ! empty( $retained ) ? count( $retained ) : false,
+			'messages'  => ! empty( $retained ) ? array(sprintf( __( 'Unable to delete post(s) %s', 'pirate-forms' ), print_r( $retained, true ) )) : array(),
+			'done'  => true,
+		);
 	}
 }

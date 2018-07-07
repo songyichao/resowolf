@@ -34,7 +34,7 @@ function amadeus_customize_register( $wp_customize ) {
 	// Logo Upload
 	$custom_logo = $wp_customize->get_control( 'custom_logo' );
 	if ( ! empty( $custom_logo ) ) {
-		$wp_customize->get_control( 'custom_logo' )->section = 'title_tagline' ;
+		$wp_customize->get_control( 'custom_logo' )->section  = 'title_tagline';
 		$wp_customize->get_control( 'custom_logo' )->priority = 11;
 	} else {
 		$wp_customize->add_setting(
@@ -76,9 +76,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'label'       => __( 'Logo size', 'amadeus' ),
 			'description' => __( 'Max-width for the logo. Default 200px', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 50,
-				'max'   => 600,
-				'step'  => 5,
+				'min'  => 50,
+				'max'  => 600,
+				'step' => 5,
 			),
 		)
 	);
@@ -93,14 +93,14 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'logo_style',
 		array(
-			'type'          => 'radio',
-			'label'         => __( 'Logo style', 'amadeus' ),
-			'description'   => __( 'This option applies only if you are using a logo', 'amadeus' ),
-			'section'       => 'title_tagline',
-			'priority'      => 13,
-			'choices'       => array(
-				'hide-title'  => __( 'Only logo', 'amadeus' ),
-				'show-title'  => __( 'Logo plus site title&amp;description', 'amadeus' ),
+			'type'        => 'radio',
+			'label'       => __( 'Logo style', 'amadeus' ),
+			'description' => __( 'This option applies only if you are using a logo', 'amadeus' ),
+			'section'     => 'title_tagline',
+			'priority'    => 13,
+			'choices'     => array(
+				'hide-title' => __( 'Only logo', 'amadeus' ),
+				'show-title' => __( 'Logo plus site title&amp;description', 'amadeus' ),
 			),
 		)
 	);
@@ -120,9 +120,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'label'       => __( 'Site branding padding', 'amadeus' ),
 			'description' => __( 'Top&amp;bottom padding for the branding (logo, site title, description). Default: 75px', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 20,
-				'max'   => 200,
-				'step'  => 5,
+				'min'  => 20,
+				'max'  => 200,
+				'step' => 5,
 			),
 		)
 	);
@@ -147,13 +147,13 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'menu_position',
 		array(
-			'type'          => 'radio',
-			'label'         => __( 'Menu position', 'amadeus' ),
-			'section'       => 'amadeus_menu',
-			'priority'      => 15,
-			'choices'       => array(
-				'above'  => __( 'Above site title/description', 'amadeus' ),
-				'below'  => __( 'Below site title/description', 'amadeus' ),
+			'type'     => 'radio',
+			'label'    => __( 'Menu position', 'amadeus' ),
+			'section'  => 'amadeus_menu',
+			'priority' => 15,
+			'choices'  => array(
+				'above' => __( 'Above site title/description', 'amadeus' ),
+				'below' => __( 'Below site title/description', 'amadeus' ),
 			),
 		)
 	);
@@ -178,14 +178,14 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'banner_type',
 		array(
-			'type'          => 'radio',
-			'label'         => __( 'Banner type', 'amadeus' ),
-			'section'       => 'amadeus_banner',
-			'priority'      => 16,
-			'choices'       => array(
-				'image'    => __( 'Header image', 'amadeus' ),
-				'slider'   => __( 'Nivo Slider (requires the Nivo Slider plugin)', 'amadeus' ),
-				'nothing'  => __( 'Nothing', 'amadeus' ),
+			'type'     => 'radio',
+			'label'    => __( 'Banner type', 'amadeus' ),
+			'section'  => 'amadeus_banner',
+			'priority' => 16,
+			'choices'  => array(
+				'image'   => __( 'Header image', 'amadeus' ),
+				'slider'  => __( 'Nivo Slider (requires the Nivo Slider plugin)', 'amadeus' ),
+				'nothing' => __( 'Nothing', 'amadeus' ),
 			),
 		)
 	);
@@ -194,15 +194,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'hide_banner',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'hide_banner',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Show the banner only on the homepage?', 'amadeus' ),
-			'section' => 'amadeus_banner',
+			'type'     => 'checkbox',
+			'label'    => __( 'Show the banner only on the homepage?', 'amadeus' ),
+			'section'  => 'amadeus_banner',
 			'priority' => 17,
 		)
 	);
@@ -210,26 +210,26 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'metaslider_shortcode',
 		array(
-			'default' => '',
+			'default'           => '',
 			'sanitize_callback' => 'amadeus_sanitize_text',
 		)
 	);
 
-	$amadeus_nivo_shortcode_desc = __( 'Add the shortcode for the Nivo Slider plugin here','amadeus' );
+	$amadeus_nivo_shortcode_desc = __( 'Add the shortcode for the Nivo Slider plugin here', 'amadeus' );
 
 	if ( ! class_exists( 'WordPress_Nivo_Slider_Lite' ) ) {
 		/* translators: Install Nivo Slider Link */
-		$amadeus_nivo_shortcode_desc = sprintf( __( 'Add the shortcode for the %s plugin here','amadeus' ), sprintf( '<a href="' . esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=nivo-slider-lite' ), 'install-plugin_nivo-slider-lite' ) ) . '" >%s</a>', 'Nivo Slider' ) );
+		$amadeus_nivo_shortcode_desc = sprintf( __( 'Add the shortcode for the %s plugin here', 'amadeus' ), sprintf( '<a href="' . esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=nivo-slider-lite' ), 'install-plugin_nivo-slider-lite' ) ) . '" >%s</a>', 'Nivo Slider' ) );
 	}
 
 	$wp_customize->add_control(
 		'metaslider_shortcode',
 		array(
-			'label' => __( 'Nivo Slider shortcode', 'amadeus' ),
-			'description'  => $amadeus_nivo_shortcode_desc,
-			'section' => 'amadeus_banner',
-			'type' => 'text',
-			'priority' => 18,
+			'label'       => __( 'Nivo Slider shortcode', 'amadeus' ),
+			'description' => $amadeus_nivo_shortcode_desc,
+			'section'     => 'amadeus_banner',
+			'type'        => 'text',
+			'priority'    => 18,
 		)
 	);
 
@@ -248,9 +248,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'header_image',
 			'label'       => __( 'Header image height', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 50,
-				'max'   => 650,
-				'step'  => 5,
+				'min'  => 50,
+				'max'  => 650,
+				'step' => 5,
 			),
 		)
 	);
@@ -270,9 +270,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'label'       => __( 'Header image height < 1024px', 'amadeus' ),
 			'description' => __( 'Set your header image height for screen widths smaller than 1024px', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 50,
-				'max'   => 650,
-				'step'  => 5,
+				'min'  => 50,
+				'max'  => 650,
+				'step' => 5,
 			),
 		)
 	);
@@ -281,15 +281,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'hide_scroll',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'hide_scroll',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide the animated scroll arrow from the header image?', 'amadeus' ),
-			'section' => 'header_image',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide the animated scroll arrow from the header image?', 'amadeus' ),
+			'section'  => 'header_image',
 			'priority' => 21,
 		)
 	);
@@ -298,7 +298,7 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'blog_options',
 		array(
-			'title' => __( 'Blog options', 'amadeus' ),
+			'title'    => __( 'Blog options', 'amadeus' ),
 			'priority' => 13,
 		)
 	);
@@ -318,9 +318,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'label'       => __( 'Excerpt length', 'amadeus' ),
 			'description' => __( 'Choose your excerpt length. Default: 55 words', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 0,
-				'max'   => 200,
-				'step'  => 5,
+				'min'  => 0,
+				'max'  => 200,
+				'step' => 5,
 			),
 		)
 	);
@@ -329,15 +329,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'meta_index',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'meta_index',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide date/author/archives on index?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide date/author/archives on index?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 11,
 		)
 	);
@@ -345,15 +345,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'meta_singles',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'meta_singles',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide date/author/archives on single posts?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide date/author/archives on single posts?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 12,
 		)
 	);
@@ -361,15 +361,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'hide_sidebar_index',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'hide_sidebar_index',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide the sidebar on index?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide the sidebar on index?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 13,
 		)
 	);
@@ -377,15 +377,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'hide_sidebar_single',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'hide_sidebar_single',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide the sidebar on single posts and pages?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide the sidebar on single posts and pages?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 13,
 		)
 	);
@@ -394,15 +394,15 @@ function amadeus_customize_register( $wp_customize ) {
 		'full_content',
 		array(
 			'sanitize_callback' => 'amadeus_sanitize_checkbox',
-			'default' => 0,
+			'default'           => 0,
 		)
 	);
 	$wp_customize->add_control(
 		'full_content',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Display the full content of your posts on index?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Display the full content of your posts on index?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 14,
 		)
 	);
@@ -416,9 +416,9 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'index_feat_image',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide featured images on index, archives?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide featured images on index, archives?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 15,
 		)
 	);
@@ -432,9 +432,9 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		'post_feat_image',
 		array(
-			'type' => 'checkbox',
-			'label' => __( 'Hide featured images on single posts?', 'amadeus' ),
-			'section' => 'blog_options',
+			'type'     => 'checkbox',
+			'label'    => __( 'Hide featured images on single posts?', 'amadeus' ),
+			'section'  => 'blog_options',
 			'priority' => 16,
 		)
 	);
@@ -453,10 +453,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'primary_color',
 			array(
-				'label'         => __( 'Primary color', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'primary_color',
-				'priority'      => 12,
+				'label'    => __( 'Primary color', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'primary_color',
+				'priority' => 12,
 			)
 		)
 	);
@@ -475,10 +475,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'social_bg',
 			array(
-				'label'         => __( 'Social area background', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'social_bg',
-				'priority'      => 13,
+				'label'    => __( 'Social area background', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'social_bg',
+				'priority' => 13,
 			)
 		)
 	);
@@ -495,10 +495,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'social_color',
 			array(
-				'label'         => __( 'Social icons', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'social_color',
-				'priority'      => 14,
+				'label'    => __( 'Social icons', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'social_color',
+				'priority' => 14,
 			)
 		)
 	);
@@ -516,10 +516,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'branding_bg',
 			array(
-				'label'         => __( 'Branding background', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'branding_bg',
-				'priority'      => 15,
+				'label'    => __( 'Branding background', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'branding_bg',
+				'priority' => 15,
 			)
 		)
 	);
@@ -537,10 +537,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'menu_bg',
 			array(
-				'label'         => __( 'Menu background', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'menu_bg',
-				'priority'      => 16,
+				'label'    => __( 'Menu background', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'menu_bg',
+				'priority' => 16,
 			)
 		)
 	);
@@ -558,10 +558,10 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'menu_color',
 			array(
-				'label'         => __( 'Menu items', 'amadeus' ),
-				'section'       => 'colors',
-				'settings'      => 'menu_color',
-				'priority'      => 17,
+				'label'    => __( 'Menu items', 'amadeus' ),
+				'section'  => 'colors',
+				'settings' => 'menu_color',
+				'priority' => 17,
 			)
 		)
 	);
@@ -579,8 +579,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'site_title_color',
 			array(
-				'label' => __( 'Site title', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Site title', 'amadeus' ),
+				'section'  => 'colors',
 				'settings' => 'site_title_color',
 				'priority' => 18,
 			)
@@ -600,8 +600,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'site_desc_color',
 			array(
-				'label' => __( 'Site description', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Site description', 'amadeus' ),
+				'section'  => 'colors',
 				'priority' => 19,
 			)
 		)
@@ -620,8 +620,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'entry_titles',
 			array(
-				'label' => __( 'Entry titles', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Entry titles', 'amadeus' ),
+				'section'  => 'colors',
 				'priority' => 20,
 			)
 		)
@@ -640,8 +640,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'entry_meta',
 			array(
-				'label' => __( 'Entry meta', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Entry meta', 'amadeus' ),
+				'section'  => 'colors',
 				'priority' => 21,
 			)
 		)
@@ -660,8 +660,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'body_text_color',
 			array(
-				'label' => __( 'Body text', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Body text', 'amadeus' ),
+				'section'  => 'colors',
 				'settings' => 'body_text_color',
 				'priority' => 22,
 			)
@@ -681,8 +681,8 @@ function amadeus_customize_register( $wp_customize ) {
 			$wp_customize,
 			'footer_bg',
 			array(
-				'label' => __( 'Footer background', 'amadeus' ),
-				'section' => 'colors',
+				'label'    => __( 'Footer background', 'amadeus' ),
+				'section'  => 'colors',
 				'settings' => 'footer_bg',
 				'priority' => 23,
 			)
@@ -692,8 +692,8 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'amadeus_fonts',
 		array(
-			'title' => __( 'Fonts', 'amadeus' ),
-			'priority' => 15,
+			'title'       => __( 'Fonts', 'amadeus' ),
+			'priority'    => 15,
 			'description' => __( 'You can use any Google Fonts you want for the heading and/or body. See the fonts here: google.com/fonts. See the documentation if you need help with this: flyfreemedia.com/documentation/amadeus', 'amadeus' ),
 		)
 	);
@@ -701,16 +701,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'body_font_name',
 		array(
-			'default' => 'Noto+Serif:400,700,400italic,700italic',
+			'default'           => 'Noto+Serif:400,700,400italic,700italic',
 			'sanitize_callback' => 'amadeus_sanitize_text',
 		)
 	);
 	$wp_customize->add_control(
 		'body_font_name',
 		array(
-			'label' => __( 'Body font name/style/sets', 'amadeus' ),
-			'section' => 'amadeus_fonts',
-			'type' => 'text',
+			'label'    => __( 'Body font name/style/sets', 'amadeus' ),
+			'section'  => 'amadeus_fonts',
+			'type'     => 'text',
 			'priority' => 11,
 		)
 	);
@@ -718,16 +718,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'body_font_family',
 		array(
-			'default' => '\'Noto Serif\', serif',
+			'default'           => '\'Noto Serif\', serif',
 			'sanitize_callback' => 'amadeus_sanitize_text',
 		)
 	);
 	$wp_customize->add_control(
 		'body_font_family',
 		array(
-			'label' => __( 'Body font family', 'amadeus' ),
-			'section' => 'amadeus_fonts',
-			'type' => 'text',
+			'label'    => __( 'Body font family', 'amadeus' ),
+			'section'  => 'amadeus_fonts',
+			'type'     => 'text',
 			'priority' => 12,
 		)
 	);
@@ -735,16 +735,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'headings_font_name',
 		array(
-			'default' => 'Playfair+Display:400,700',
+			'default'           => 'Playfair+Display:400,700',
 			'sanitize_callback' => 'amadeus_sanitize_text',
 		)
 	);
 	$wp_customize->add_control(
 		'headings_font_name',
 		array(
-			'label' => __( 'Headings font name/style/sets', 'amadeus' ),
-			'section' => 'amadeus_fonts',
-			'type' => 'text',
+			'label'    => __( 'Headings font name/style/sets', 'amadeus' ),
+			'section'  => 'amadeus_fonts',
+			'type'     => 'text',
 			'priority' => 14,
 		)
 	);
@@ -752,16 +752,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_setting(
 		'headings_font_family',
 		array(
-			'default' => '\'Playfair Display\', serif',
+			'default'           => '\'Playfair Display\', serif',
 			'sanitize_callback' => 'amadeus_sanitize_text',
 		)
 	);
 	$wp_customize->add_control(
 		'headings_font_family',
 		array(
-			'label' => __( 'Headings font family', 'amadeus' ),
-			'section' => 'amadeus_fonts',
-			'type' => 'text',
+			'label'    => __( 'Headings font family', 'amadeus' ),
+			'section'  => 'amadeus_fonts',
+			'type'     => 'text',
 			'priority' => 15,
 		)
 	);
@@ -781,9 +781,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'Site title', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 90,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 90,
+				'step' => 1,
 			),
 		)
 	);
@@ -803,9 +803,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'Site description', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 50,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 50,
+				'step' => 1,
 			),
 		)
 	);
@@ -825,9 +825,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H1 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -847,9 +847,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H2 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -869,9 +869,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H3 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -891,9 +891,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H4 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -913,9 +913,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H5 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -935,9 +935,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'H6 font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 60,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 60,
+				'step' => 1,
 			),
 		)
 	);
@@ -957,9 +957,9 @@ function amadeus_customize_register( $wp_customize ) {
 			'section'     => 'amadeus_fonts',
 			'label'       => __( 'Body font size', 'amadeus' ),
 			'input_attrs' => array(
-				'min'   => 10,
-				'max'   => 24,
-				'step'  => 1,
+				'min'  => 10,
+				'max'  => 24,
+				'step' => 1,
 			),
 		)
 	);
@@ -1010,16 +1010,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		new Amadeus_Control_Upsell_Theme_Info(
 			$wp_customize, 'amadeus_theme_info_colors_section_control', array(
-				'section'     => 'colors',
-				'priority'    => 500,
-				'options'     => array(
+				'section'            => 'colors',
+				'priority'           => 500,
+				'options'            => array(
 					esc_html__( 'Extra Colors', 'amadeus' ),
 				),
 				'explained_features' => array(
 					esc_html__( 'Change the color for header text, header buttons, widgets background and color, footer widgets title and article title.', 'amadeus' ),
 				),
-				'button_url'  => esc_url( 'https://themeisle.com/themes/amadeus-pro/' ),
-				'button_text' => esc_html__( 'View PRO version', 'amadeus' ),
+				'button_url'         => esc_url( 'https://themeisle.com/themes/amadeus-pro/' ),
+				'button_text'        => esc_html__( 'View PRO version', 'amadeus' ),
 			)
 		)
 	);
@@ -1034,16 +1034,16 @@ function amadeus_customize_register( $wp_customize ) {
 	$wp_customize->add_control(
 		new Amadeus_Control_Upsell_Theme_Info(
 			$wp_customize, 'amadeus_theme_info_blog_section_control', array(
-				'section'     => 'blog_options',
-				'priority'    => 500,
-				'options'     => array(
+				'section'            => 'blog_options',
+				'priority'           => 500,
+				'options'            => array(
 					esc_html__( 'Alternative Layout', 'amadeus' ),
 				),
 				'explained_features' => array(
 					esc_html__( 'Choose between 2 styles to display your posts on the front page.', 'amadeus' ),
 				),
-				'button_url'  => esc_url( 'https://themeisle.com/themes/amadeus-pro/' ),
-				'button_text' => esc_html__( 'View PRO version', 'amadeus' ),
+				'button_url'         => esc_url( 'https://themeisle.com/themes/amadeus-pro/' ),
+				'button_text'        => esc_html__( 'View PRO version', 'amadeus' ),
 			)
 		)
 	);
@@ -1071,8 +1071,8 @@ function amadeus_sanitize_text( $input ) {
  */
 function amadeus_sanitize_logo_style( $input ) {
 	$valid = array(
-		'hide-title'  => __( 'Only logo', 'amadeus' ),
-		'show-title'  => __( 'Logo plus site title&amp;description', 'amadeus' ),
+		'hide-title' => __( 'Only logo', 'amadeus' ),
+		'show-title' => __( 'Logo plus site title&amp;description', 'amadeus' ),
 	);
 	if ( array_key_exists( $input, $valid ) ) {
 		return $input;
@@ -1090,8 +1090,8 @@ function amadeus_sanitize_logo_style( $input ) {
  */
 function amadeus_sanitize_menu_position( $input ) {
 	$valid = array(
-		'above'  => __( 'Above site title/description', 'amadeus' ),
-		'below'  => __( 'Below site title/description', 'amadeus' ),
+		'above' => __( 'Above site title/description', 'amadeus' ),
+		'below' => __( 'Below site title/description', 'amadeus' ),
 	);
 	if ( array_key_exists( $input, $valid ) ) {
 		return $input;
@@ -1109,9 +1109,9 @@ function amadeus_sanitize_menu_position( $input ) {
  */
 function amadeus_sanitize_banner( $input ) {
 	$valid = array(
-		'image'    => __( 'Header image', 'amadeus' ),
-		'slider'   => __( 'Nivo Slider (requires the Nivo Slider plugin)', 'amadeus' ),
-		'nothing'  => __( 'Nothing', 'amadeus' ),
+		'image'   => __( 'Header image', 'amadeus' ),
+		'slider'  => __( 'Nivo Slider (requires the Nivo Slider plugin)', 'amadeus' ),
+		'nothing' => __( 'Nothing', 'amadeus' ),
 	);
 	if ( array_key_exists( $input, $valid ) ) {
 		return $input;

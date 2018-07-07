@@ -15,7 +15,7 @@ class Amadeus_Recent_Comments extends WP_Widget {
 	 */
 	public function __construct() {
 		$widget_ops = array(
-			'classname' => 'amadeus_recent_comments',
+			'classname'   => 'amadeus_recent_comments',
 			'description' => __( 'Recent comments with avatars.', 'amadeus' ),
 		);
 		parent::__construct( 'recent-comments', __( 'Amadeus: Recent Comments', 'amadeus' ), $widget_ops );
@@ -98,7 +98,7 @@ class Amadeus_Recent_Comments extends WP_Widget {
 
 			foreach ( (array) $comments as $comment ) {
 				$output .= '<li class="list-group-item"><div class="recent-comment clearfix">' . get_avatar( $comment, 60 ) . '<div class="recent-comment-meta"><span>' . /* translators: comments widget: 1: comment author, 2: post link */
-						   sprintf( __( '%1$s on %2$s', 'amadeus' ), get_comment_author_link(), '</span><a class="post-title" href="' . esc_url( get_comment_link( $comment->comment_ID ) ) . '">' . get_the_title( $comment->comment_post_ID ) . '</a></div>' ) . '</div></li>';
+							sprintf( __( '%1$s on %2$s', 'amadeus' ), get_comment_author_link(), '</span><a class="post-title" href="' . esc_url( get_comment_link( $comment->comment_ID ) ) . '">' . get_the_title( $comment->comment_post_ID ) . '</a></div>' ) . '</div></li>';
 			}
 		}
 		$output .= '</ul>';

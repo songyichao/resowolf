@@ -1,63 +1,113 @@
 
-### 2.0.6 - 07/08/2017
+### 2.0.7 - 02/05/2018
 **Changes:** 
-- Fixed Grunt errors
-- Removed unused favicon control
+- Updated grunt files
+- Compatibility with Orbit Fox plugin
+
+### 2.0.6 - 07/08/2017
 
-### 2.0.5 - 11/04/2017
-**Changes:** 
-- Update tgm library
+**Changes:** 
 
-### 2.0.4 - 28/02/2017
-**Changes:** 
-- Update Customize layout
+- Fixed Grunt errors
 
-### 2.0.3 - 01/02/2017
-**Changes:** 
-- Update fontawesome
+- Removed unused favicon control
 
-### 2.0.2 - 22/12/2016
-**Changes:** 
-- Fix typo in page_fullwidth.php
+### 2.0.5 - 11/04/2017
 
-### 2.0.1 - 21/12/2016
-**Changes:** 
-- Added grunt and fixed all the generated errors
-- Recommend Nivo Slider Lite
-- Compatibility with Nivo Slider Lite plugin
+**Changes:** 
 
-### 2.0.0 - 08/12/2016
-**Changes:** 
-- Update style.css
+- Update tgm library
 
-### 1.2.0 - 08/12/2016
-**Changes:** 
-- Fixed issue with layout in Customize with WordPress 4.7
 
-### 1.13 - 12/09/2016
-**Changes:** 
-- Added upsell in customize
-- Fixed issues with custom logo support
+### 2.0.4 - 28/02/2017
 
-### 1.12 - 04/08/2016
-**Changes:** 
-- Fix issue with fields in Firefox
+**Changes:** 
 
-### 1.11 - 04/08/2016
-**Changes:** 
-- Fix notice
+- Update Customize layout
 
-### 1.10 - 04/08/2016
-**Changes:** 
-- Fixed issue with fonts options in customize not visible in Firefox
-- Added support for custom logo
-- Fix typo
 
-### 1.09 - 20/06/2016
-**Changes:** 
-- Fixed issue with menu item drop down color
-TEst commit 
- New commit 
+### 2.0.3 - 01/02/2017
+
+**Changes:** 
+
+- Update fontawesome
+
+
+### 2.0.2 - 22/12/2016
+
+**Changes:** 
+
+- Fix typo in page_fullwidth.php
+
+
+### 2.0.1 - 21/12/2016
+
+**Changes:** 
+
+- Added grunt and fixed all the generated errors
+
+- Recommend Nivo Slider Lite
+
+- Compatibility with Nivo Slider Lite plugin
+
+
+### 2.0.0 - 08/12/2016
+
+**Changes:** 
+
+- Update style.css
+
+
+### 1.2.0 - 08/12/2016
+
+**Changes:** 
+
+- Fixed issue with layout in Customize with WordPress 4.7
+
+
+### 1.13 - 12/09/2016
+
+**Changes:** 
+
+- Added upsell in customize
+
+- Fixed issues with custom logo support
+
+
+### 1.12 - 04/08/2016
+
+**Changes:** 
+
+- Fix issue with fields in Firefox
+
+
+### 1.11 - 04/08/2016
+
+**Changes:** 
+
+- Fix notice
+
+
+### 1.10 - 04/08/2016
+
+**Changes:** 
+
+- Fixed issue with fonts options in customize not visible in Firefox
+
+- Added support for custom logo
+
+- Fix typo
+
+
+### 1.09 - 20/06/2016
+
+**Changes:** 
+
+- Fixed issue with menu item drop down color
+
+TEst commit 
+
+ New commit 
 
 ### 1.06 - 19/04/2016
 
