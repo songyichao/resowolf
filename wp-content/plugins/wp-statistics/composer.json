@@ -1,10 +1,12 @@
 {
   "require": {
-    "geoip2/geoip2": "^2.7.0",
+    "php": ">=5.4",
+    "geoip2/geoip2": "^2.9.0",
     "s1lentium/iptools": "^1.1.0",
-    "donatj/phpuseragentparser": "^0.9.0",
-    "browscap/browscap-php": "3.1.0",
-    "erusev/parsedown": "^1.6"
+    "whichbrowser/parser": "2.0.37",
+    "jaybizzle/crawler-detect": "1.2.78",
+    "erusev/parsedown": "^1.6",
+    "vectorface/whip": "0.3.2"
   },
   "config": {
     "vendor-dir": "includes/vendor"

@@ -1,10 +1,51 @@
 CHANGELOG
 =========
 
+1.4.1 (2019-01-04)
+------------------
+
+* The `maxminddb` extension now returns a string when a `uint32`
+  value is greater than `LONG_MAX`. Previously, the value would
+  overflow. This generally only affects 32-bit machines.  Reported
+  by Remi Collet. GitHub #79.
+* For `uint64` values, the `maxminddb` extension now returns an
+  integer rather than a string when the value is less than or equal
+  to `LONG_MAX`. This more closely matches the behavior of the pure
+  PHP reader.
+
+1.4.0 (2018-11-20)
+------------------
+
+* The `maxminddb` extension now has the arginfo when using reflection.
+  PR by Remi Collet. GitHub #75.
+* The `maxminddb` extension now provides `MINFO()` function that
+  displays the extension version and the libmaxminddb version. PR by
+  Remi Collet. GitHub #74.
+* The `maxminddb` `configure` script now uses `pkg-config` when
+  available to get libmaxmindb build info. PR by Remi Collet.
+  GitHub #73.
+* The pure PHP reader now correctly decodes integers on 32-bit platforms.
+  Previously, large integers would overflow. Reported by Remi Collet.
+  GitHub #77.
+* There are small performance improvements for the pure PHP reader.
+
+1.3.0 (2018-02-21)
+------------------
+
+* IMPORTANT: The `maxminddb` extension now obeys `open_basedir`. If
+  `open_basedir` is set, you _must_ store the database within the
+  specified directory. Placing the file outside of this directory
+  will result in an exception. Please test your integration before
+  upgrading the extension. This does not affect the pure PHP
+  implementation, which has always had this restriction. Reported
+  by Benoît Burnichon. GitHub #61.
+* A custom `autoload.php` file is provided for installations without
+  Composer. GitHub #56.
+
 1.2.0 (2017-10-27)
 ------------------
 
-* PHP 5.4 is now required.
+* PHP 5.4 or greater is now required.
 * The `Reader` class for the `maxminddb` extension is no longer final.
   This was change to match the behavior of the pure PHP class.
   Reported and fixed by venyii. GitHub #52 & #54.

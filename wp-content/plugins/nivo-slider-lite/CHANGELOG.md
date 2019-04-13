@@ -1,4 +1,15 @@
 
+ ### v2.3.0 - 2019-03-08 
+ **Changes:** 
+ * Tested up with WordPress 5.1
+* Fix escaping attribute issue
+* Remove mention of the pro plugin, discontinue integration on the Premium addon
+ 
+ ### v2.2.0 - 2018-11-19 
+ **Changes:** 
+ * Improve compatibility with Wordpress 5.0 + Gutenberg Editor. 
+* Adds integration with  Optimole - Image optimization service.
+ 
  ### v2.1.2 - 2018-05-28 
  **Changes:** 
  * Removes redundant files present in distribution.

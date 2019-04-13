@@ -4,26 +4,11 @@
     });
 </script>
 
-<div class="wrap">
-    <h2><?php _e( 'Author Statistics', 'wp-statistics' ); ?></h2>
-    <?php do_action( 'wp_statistics_after_title' ); ?>
-
+<div class="wrap wps-wrap">
+	<?php WP_Statistics_Admin_Pages::show_page_title( __( 'Author Statistics', 'wp-statistics' ) ); ?>
 	<?php
-	$daysToDisplay = 20;
-	if ( array_key_exists( 'hitdays', $_GET ) ) {
-		$daysToDisplay = intval( $_GET['hitdays'] );
-	}
-
-	if ( array_key_exists( 'rangestart', $_GET ) ) {
-		$rangestart = $_GET['rangestart'];
-	} else {
-		$rangestart = '';
-	}
-	if ( array_key_exists( 'rangeend', $_GET ) ) {
-		$rangeend = $_GET['rangeend'];
-	} else {
-		$rangeend = '';
-	}
+	//Set Default Time Picker Option
+	list( $daysToDisplay, $rangestart, $rangeend ) = wp_statistics_prepare_range_time_picker();
 	if ( array_key_exists( 'author', $_GET ) ) {
 		$author = intval( $_GET['author'] );
 	} else {
@@ -37,24 +22,18 @@
 	$html = __( 'Select Author', 'wp-statistics' ) . ': ';
 	$html .= '<select name="author" id="author">';
 
-	$authors_list = wp_list_authors(
-		'html=0&style=none&echo=0&exclude_admin=0&optioncount=0&show_fullname=1&hide_empty=1&orderby=name&order=ASC'
-	);
+	$authors_list = get_users( 'who=authors' );
 
-	$authors_array = explode( ',', $authors_list );
-
-	foreach ( $authors_array as $value ) {
-		$author_obj = get_user_by( 'slug', $value );
+	foreach ( $authors_list as $author_obj ) {
 
 		if ( $author_obj !== false ) {
-			// Check to see if this tag is the one that is currently selected.
 			if ( $author_obj->ID === $author ) {
 				$selected = ' SELECTED';
 			} else {
 				$selected = '';
 			}
 
-			$html .= '<option value="' . $author_obj->ID . '"{$selected}>' . $value . '</option>';
+			$html .= '<option value="' . $author_obj->ID . "\"{$selected}>" . ( $author_obj->display_name != "" ? $author_obj->display_name : $author_obj->user_login ) . '</option>';
 		}
 	}
 
@@ -126,6 +105,7 @@
                         <canvas id="hit-stats" height="80"></canvas>
                         <script>
                             var ctx = document.getElementById("hit-stats").getContext('2d');
+                            <?php if(is_rtl()) { ?> Chart.defaults.global.defaultFontFamily = "tahoma"; <?php } ?>
                             var ChartJs = new Chart(ctx, {
                                 type: 'line',
                                 data: {

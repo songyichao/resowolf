@@ -29,10 +29,10 @@ define('DB_NAME', 'wordpress');
 define('DB_USER', 'root');
 
 /** MySQL database password */
-define('DB_PASSWORD', 'resowolf');
+define('DB_PASSWORD', 'Resowolf@123.com');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+define('DB_HOST', '115.28.224.19');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
@@ -80,8 +80,9 @@ $table_prefix  = 'wp_';
  *
  * @link https://codex.wordpress.org/Debugging_in_WordPress
  */
-define('WP_DEBUG', false);
-
+define('WP_DEBUG', true);
+define( 'WP_DEBUG_LOG', true);
+define( 'WP_DEBUG_DISPLAY', false);
 /* That's all, stop editing! Happy blogging. */
 
 /** Absolute path to the WordPress directory. */

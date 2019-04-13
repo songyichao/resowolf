@@ -22,7 +22,7 @@
     float: right;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 998px) {
     #wps-postbox-container-1 {
         width: 35%;
     }
@@ -252,7 +252,8 @@
 #wps_summary_postbox,
 #wps_browsers_postbox,
 #wps_referring_postbox,
-#wps_countries_postbox {
+#wps_countries_postbox,
+#wps_words_postbox {
     overflow: hidden;
 }
 
@@ -338,12 +339,22 @@
 .table-stats tr, .table-stats td {
     border-bottom: 1px solid #efeeee;
     background-color: white;
+    transition: 1s all;
+}
+
+.table-stats tr:last-child td {
+    border-bottom:0px;
+}
+
+.table-stats tr:hover:not(:first-child) td {
+    background-color: rgba(241, 241, 241, 0.65) !important;
 }
 
 .table-stats tr:first-child td {
     border: 0px none;
     text-align: left;
 }
+
 .rtl .table-stats.left-align tr,
 .rtl .table-stats.left-align td {
     text-align: left !important;
@@ -351,6 +362,14 @@
 
 .rtl .table-stats tr, .rtl .table-stats td {
     text-align: right !important;
+}
+
+.rtl .table-stats .log-tools {
+    float: right;
+}
+
+.rtl .table-stats .th-center {
+    text-align: center !important;
 }
 
 .table-stats {
@@ -364,4 +383,16 @@
 .button-link.wps-more,
 .button-link.wps-refresh {
     text-decoration: none !important;
+}
+
+.wp-statistics-table {
+    overflow-x: auto;
+}
+
+.wps-postbox-veronalabs {
+    margin: 18px 0 0 0;
+}
+
+.wps-postbox-veronalabs img {
+    width: 116px;
 }
